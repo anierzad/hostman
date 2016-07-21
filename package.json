@@ -1,0 +1,18 @@
+{
+  "name": "hostman",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anierzad/hostman.git"
+  },
+  "author": "Adam Nierzad",
+  "bugs": {
+    "url": "https://github.com/anierzad/hostman/issues"
+  },
+  "homepage": "https://github.com/anierzad/hostman#readme"
+}
