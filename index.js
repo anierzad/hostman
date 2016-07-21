@@ -1,3 +1,5 @@
+var hosts = require('./hosts');
+
 var args = process.argv.slice(2);
 
 // Do we have any arguments?
@@ -23,7 +25,8 @@ if (args[0] === 'add') {
         process.exit();
     }
 
-
+    // Add.
+    hosts.addHost(args[1]);
 }
 
 // Provide help.
