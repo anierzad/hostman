@@ -1,25 +1,71 @@
 // # Config
 // This module handles everything to do with configuration.
 
-modules.exports = {
+var access = require('./access');
 
-    // Get or set the path to the host file.
-    hostfilePath: function (path, callback) {
+function notSet (config, callback) {
+    callback('"' + config + '" is not set.');
+}
 
-        // Is the path argument actually our callback?
-        if (typeof path === 'function') {
-            callback = path;
-            path = undefined;
-        }
+function checkArguments (func, args) {
 
-        // Path defined?
-        if(!path) {
+    // Is the first argument actually our callback?
+    if (typeof args[0] === 'function') {
+        args[1] = args[0];
+        args[0] = undefined;
+    }
 
-            // Get the hostfile path.
-            
+    // Check we have a callback.
+    if (typeof args[1] !== 'function') {
+        throw new TypeError('"callback" must be a function.');
+    }
 
-        } else {
+    func(args[0], args[1]);
+}
 
-        }
+function hostsFilePath (path, callback) {
+
+    const config = 'hostsFilePath';
+
+    // Path defined?
+    if(!path) {
+
+        // Get the hostfile path.
+        access.readConfig(config, function (err, path) {
+
+            if (err) {
+                callback(err);
+                return;
+            }
+
+            if (typeof path === 'undefined') {
+                notSet(config, callback);
+                return;
+            }
+
+            callback(null, path);
+        });
+
+
+    } else {
+
+        // Set the hostfile path.
+        access.writeConfig(config, path, function (err, result) {
+
+            if (err) {
+                callback(err);
+                return;
+            }
+
+            callback(null, result);
+        });
+    }
+}
+
+module.exports = {
+
+    // Get or set the path to the hosts file.
+    hostsFilePath: function (path, callback) {
+        checkArguments(hostsFilePath, arguments);
     }
 };
