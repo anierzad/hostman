@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/anierzad/hostman/issues"
   },
-  "homepage": "https://github.com/anierzad/hostman#readme"
+  "homepage": "https://github.com/anierzad/hostman#readme",
+  "dependencies": {
+    "nconf": "^0.8.4"
+  }
 }
