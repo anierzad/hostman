@@ -70,6 +70,32 @@ function devMachineAddress(address, callback) {
 
     } else {
 
+        // Validate the address.
+        var addressParts = address.split('.');
+
+        // Enough parts?
+        if (addressParts.length !== 4) {
+            callback('Invalid IP address.');
+            return;
+        }
+
+        // Values within range?
+        var inRange = true;
+
+        addressParts.forEach(function(part) {
+
+            var pVal = parseInt(part);
+
+            if (pVal < 0 || pVal > 255) {
+                inRange = false;
+            }
+        });
+
+        if (!inRange) {
+            callback('Invalid IP address.');
+            return;
+        }
+
         // Set the dev machine address.
         access.writeConfig(config, address, function (err, result) {
 
