@@ -41,7 +41,8 @@ module.exports = {
         }
 
         nconf.set(config, value);
-        
-        callback(null, nconf.save());
+        nconf.save();
+
+        callback(null, nconf.get(config));
     }
 };
