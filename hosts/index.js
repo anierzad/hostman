@@ -108,5 +108,83 @@ module.exports = {
         function proceed () {
             hosts.removeHost(host);
         }
+    },
+
+    // Update the dev machine address.
+    updateDev: function (address, callback) {
+
+        var oldAddress;
+
+        // Start by getting old address.
+        getOldAddress();
+
+        function getOldAddress () {
+            config.devMachineAddress(function (err, address) {
+
+                // Error?
+                if (err) {
+                    config.devMachineAddress(address, function (err, address) {
+
+                        // Error?
+                        if (err) {
+                            callback(err);
+                            return;
+                        }
+
+                        callback(null);
+                        return;
+                    })
+                    return;
+                }
+
+                oldAddress = address;
+
+                updateConfig();
+            });
+        }
+
+        function updateConfig () {
+            config.devMachineAddress(address, function (err, address) {
+
+                // Error?
+                if (err) {
+                    callback(err);
+                    return;
+                }
+
+                checkHostsFilePath();
+            });
+        }
+
+        function checkHostsFilePath () {
+
+            // Have host file path?
+            config.hostsFilePath(function (err, path) {
+
+                // Get an error?
+                if (err) {
+
+                    // Prompt.
+                    prompts.hostsFilePath(function (err, path) {
+
+                        // Write host file path.
+                        config.hostsFilePath(path, function (result) {
+
+                            // Move on.
+                            proceed();
+                        });
+                    });
+
+                    return;
+                }
+
+                // Move on.
+                proceed();
+            });
+        }
+
+        function proceed () {
+            hosts.updateDev(oldAddress);
+        }
     }
 };

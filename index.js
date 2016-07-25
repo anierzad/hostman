@@ -49,6 +49,26 @@ if (args[0] === 'remove') {
     hosts.removeHost(args[1]);
 }
 
+// Process for 'dev' command.
+if (args[0] === 'dev') {
+
+    // Is there a second argument?
+    if (typeof args[1] === 'undefined') {
+        help('dev');
+        process.exit();
+    }
+
+    // Asking for help?
+    if (args[1] === '--help') {
+        console.log('hostman dev <address>');
+        console.log('Changes the development machine IP and updates related hosts file entries.');
+        process.exit();
+    }
+
+    // Add.
+    hosts.updateDev(args[1]);
+}
+
 // Provide help.
 if (args[0] === '--help') {
     console.log('usage: hostman <command> [<args>]');
