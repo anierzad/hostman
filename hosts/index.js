@@ -101,7 +101,7 @@ module.exports = {
                 }
 
                 // Move on.
-                checkDevMachineAddress();
+                proceed();
             });
         }
 

@@ -2,9 +2,10 @@
 // Manages manipulation of the hosts file.
 
 var fs = require('fs');
-var readline = require('readline');
 
 var config = require('../config');
+
+var hostmanTag = '// hostman managed';
 
 module.exports = {
 
@@ -29,7 +30,7 @@ module.exports = {
                     return;
                 }
 
-                var line = '\n' + address + '\t' + host + ' // hostman managed';
+                var line = '\n' + address + '\t' + host + ' ' + hostmanTag;
 
                 fs.appendFile(path, line, function (err) {
 
@@ -49,13 +50,43 @@ module.exports = {
         // Get the hosts file path.
         config.hostsFilePath(function (err, path) {
 
-            // Create line reader.
-            var lineReader = readline.createInterface({
-                input: fs.createReadStream(path)
-            });
+            // Read file.
+            fs.readFile(path, function (err, data) {
 
-            rl.on('line', function (line) {
-                console.log(line);
+                // Error?
+                if (err) {
+                    callback(err);
+                    return;
+                }
+
+                // Read old file and create new file data.
+                var newFileData = '';
+                var fileData = data.toString().split('\n');
+
+                fileData.forEach(function(line) {
+
+                    // Does the line match the host we're removing?
+                    if (line.indexOf('\t' + host + ' ' + hostmanTag) === -1) {
+
+                        // No.
+                        newFileData = newFileData + line + '\n';
+                    }
+                });
+
+                // Remove trailing new lines.
+                while (newFileData.lastIndexOf('\n') === newFileData.length - 1) {
+                    newFileData = newFileData.substring(0, newFileData.length - 1);
+                }
+
+                // Write out file.
+                fs.writeFile(path, newFileData, function (err) {
+
+                    // Error?
+                    if (err) {
+                        callback(err);
+                        return;
+                    }
+                });
             });
         });
     }
