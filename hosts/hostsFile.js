@@ -29,16 +29,15 @@ module.exports = {
                     return;
                 }
 
-                // Open file.
-                fs.open(path, 'r+', function (err, fd) {
+                var line = '\n' + address + '\t' + host + ' // hostman managed';
 
-                    // Is there an error?
+                fs.appendFile(path, line, function (err) {
+
+                    // Was there an error?
                     if (err) {
                         callback(err);
                         return;
                     }
-
-                    fs.write(fd, '\n' + address + '\t' + host + ' // hostman managed');
                 });
             });
         });
