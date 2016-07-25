@@ -64,7 +64,7 @@ function devMachineAddress(address, callback) {
                 return;
             }
 
-            callback(null, path);
+            callback(null, address);
         });
 
 
