@@ -14,7 +14,7 @@ module.exports = {
         checkHostsFilePath();
 
         function checkHostsFilePath () {
-            console.log('checkHostsFilePath');
+
             // Have host file path?
             config.hostsFilePath(function (err, path) {
 
@@ -41,7 +41,7 @@ module.exports = {
         }
 
         function checkDevMachineAddress () {
-            console.log('checkDevMachineAddress');
+
             // Have a dev machine address?
             config.devMachineAddress(function (err, address) {
 
@@ -68,8 +68,45 @@ module.exports = {
         }
 
         function proceed () {
-            console.log('Proceeding.');
             hosts.addHost(host);
+        }
+    },
+
+    // Remove a host from the hostfile.
+    removeHost: function (host) {
+
+        // Start by checking hosts file path.
+        checkHostsFilePath();
+
+        function checkHostsFilePath () {
+
+            // Have host file path?
+            config.hostsFilePath(function (err, path) {
+
+                // Get an error?
+                if (err) {
+
+                    // Prompt.
+                    prompts.hostsFilePath(function (err, path) {
+
+                        // Write host file path.
+                        config.hostsFilePath(path, function (result) {
+
+                            // Move on.
+                            proceed();
+                        });
+                    });
+
+                    return;
+                }
+
+                // Move on.
+                checkDevMachineAddress();
+            });
+        }
+
+        function proceed () {
+            hosts.removeHost(host);
         }
     }
 };

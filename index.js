@@ -29,6 +29,26 @@ if (args[0] === 'add') {
     hosts.addHost(args[1]);
 }
 
+// Process for 'remove' command.
+if (args[0] === 'remove') {
+
+    // Is there a second argument?
+    if (typeof args[1] === 'undefined') {
+        help('remove');
+        process.exit();
+    }
+
+    // Asking for help?
+    if (args[1] === '--help') {
+        console.log('hostman remove <domain>');
+        console.log('Removes the given <domain> from the hosts file if it exists.');
+        process.exit();
+    }
+
+    // Add.
+    hosts.removeHost(args[1]);
+}
+
 // Provide help.
 if (args[0] === '--help') {
     console.log('usage: hostman <command> [<args>]');
