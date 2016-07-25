@@ -130,7 +130,7 @@ module.exports = {
                             host = host[0];
 
                             // Create new override.
-                            newFileData = newFileData + address + '\t' + host + '' + hostmanTag + '\n';
+                            newFileData = newFileData + address + '\t' + host + ' ' + hostmanTag + '\n';
                             
                         } else {
 
