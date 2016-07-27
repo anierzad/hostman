@@ -12,3 +12,8 @@ The aim of this project is to produce a tool which provides a quick and easy com
 You should be able to specify an IP for a development machine and add domains which should point to that IP. If I update the IP for the development machine, all the domains should update too.
 
 I'm sure additional features will appear as the project progresses.
+
+## Usage
+```
+hostsman --help
+```
