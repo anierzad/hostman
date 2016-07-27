@@ -1,7 +1,8 @@
 {
   "name": "hostsman",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Hosts file management for OS X.",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/anierzad/hostsman.git"
   },
-  "author": "Adam Nierzad",
-  "bugs": {
-    "url": "https://github.com/anierzad/hostsman/issues"
-  },
+  "author": "Adam Nierzad (http://www.adamnierzad.com)",
+  "bugs": "https://github.com/anierzad/hostsman/issues",
   "homepage": "https://github.com/anierzad/hostsman#readme",
   "dependencies": {
     "nconf": "^0.8.4"
