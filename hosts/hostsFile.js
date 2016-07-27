@@ -5,7 +5,7 @@ var fs = require('fs');
 
 var config = require('../config');
 
-var hostmanTag = '// hostman managed';
+var managedTag = '// hostsman managed';
 
 module.exports = {
 
@@ -30,7 +30,7 @@ module.exports = {
                     return;
                 }
 
-                var line = '\n' + address + '\t' + host + ' ' + hostmanTag;
+                var line = '\n' + address + '\t' + host + ' ' + managedTag;
 
                 fs.appendFile(path, line, function (err) {
 
@@ -66,7 +66,7 @@ module.exports = {
                 fileData.forEach(function(line) {
 
                     // Does the line match the host we're removing?
-                    if (line.indexOf('\t' + host + ' ' + hostmanTag) === -1) {
+                    if (line.indexOf('\t' + host + ' ' + managedTag) === -1) {
 
                         // No.
                         newFileData = newFileData + line + '\n';
@@ -122,7 +122,7 @@ module.exports = {
                     fileData.forEach(function(line) {
 
                         // Does the line match the dev address we're replacing?
-                        if (line.indexOf(oldAddress + '\t') > -1 && line.indexOf(hostmanTag) > -1 ) {
+                        if (line.indexOf(oldAddress + '\t') > -1 && line.indexOf(managedTag) > -1 ) {
 
                             // Yes, get host.
                             var host = line.split('\t');
@@ -130,7 +130,7 @@ module.exports = {
                             host = host[0];
 
                             // Create new override.
-                            newFileData = newFileData + address + '\t' + host + ' ' + hostmanTag + '\n';
+                            newFileData = newFileData + address + '\t' + host + ' ' + managedTag + '\n';
                             
                         } else {
 

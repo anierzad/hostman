@@ -1,5 +1,5 @@
 {
-  "name": "hostman",
+  "name": "hostsman",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anierzad/hostman.git"
+    "url": "git+https://github.com/anierzad/hostsman.git"
   },
   "author": "Adam Nierzad",
   "bugs": {
-    "url": "https://github.com/anierzad/hostman/issues"
+    "url": "https://github.com/anierzad/hostsman/issues"
   },
-  "homepage": "https://github.com/anierzad/hostman#readme",
+  "homepage": "https://github.com/anierzad/hostsman#readme",
   "dependencies": {
     "nconf": "^0.8.4"
   }

@@ -1,4 +1,4 @@
-# Hostman
+# Hostsman
 A simple node tool to provide easy management of host overrides.
 
 ## Introduction

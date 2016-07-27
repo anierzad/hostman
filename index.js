@@ -19,7 +19,7 @@ if (args[0] === 'add') {
 
     // Asking for help?
     if (args[1] === '--help') {
-        console.log('hostman add <domain>');
+        console.log('hostsman add <domain>');
         console.log('Adds the given <domain> to the hosts file using the saved dev machine ' +
             'address');
         process.exit();
@@ -46,7 +46,7 @@ if (args[0] === 'remove') {
 
     // Asking for help?
     if (args[1] === '--help') {
-        console.log('hostman remove <domain>');
+        console.log('hostsman remove <domain>');
         console.log('Removes the given <domain> from the hosts file if it exists.');
         process.exit();
     }
@@ -72,7 +72,7 @@ if (args[0] === 'setdev') {
 
     // Asking for help?
     if (args[1] === '--help') {
-        console.log('hostman setdev <address>');
+        console.log('hostsman setdev <address>');
         console.log('Changes the development machine IP and updates related hosts file entries.');
         process.exit();
     }
@@ -89,7 +89,7 @@ if (args[0] === 'setdev') {
 
 // Provide help.
 if (args[0] === '--help') {
-    console.log('usage: hostman <command> [<args>]');
+    console.log('usage: hostsman <command> [<args>]');
     console.log();
     console.log('commands:');
     console.log('\tadd <domain>');
@@ -100,13 +100,13 @@ if (args[0] === '--help') {
 
 // Print usage information.
 function usage () {
-    console.log('usage: hostman <command> [<args>]');
-    console.log('"hostman --help" for help');
+    console.log('usage: hostsman <command> [<args>]');
+    console.log('"hostsman --help" for help');
 }
 
 // Print help for passed command.
 function help (command) {
-    console.log('"hostman ' + command + ' --help" for help');
+    console.log('"hostsman ' + command + ' --help" for help');
 }
 
 // Handle errors.
