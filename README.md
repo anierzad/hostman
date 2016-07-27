@@ -13,7 +13,16 @@ You should be able to specify an IP for a development machine and add domains wh
 
 I'm sure additional features will appear as the project progresses.
 
+## Installation
+Install from npm.
+
+```
+npm install -g hostsman
+```
+
 ## Usage
+Currently must be used with `sudo` to allow appropriate write access.
+
 ```
 hostsman --help
 ```
