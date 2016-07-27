@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 var hosts = require('./hosts');
 
 var args = process.argv.slice(2);
