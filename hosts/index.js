@@ -8,7 +8,7 @@ var hosts = require('./hostsFile');
 module.exports = {
 
     // Add a host to the hostfile.
-    addHost: function (host) {
+    addHost: function (host, callback) {
 
         // Start by checking hosts file path.
         checkHostsFilePath();
@@ -68,12 +68,12 @@ module.exports = {
         }
 
         function proceed () {
-            hosts.addHost(host);
+            hosts.addHost(host, callback);
         }
     },
 
     // Remove a host from the hostfile.
-    removeHost: function (host) {
+    removeHost: function (host, callback) {
 
         // Start by checking hosts file path.
         checkHostsFilePath();
@@ -106,7 +106,7 @@ module.exports = {
         }
 
         function proceed () {
-            hosts.removeHost(host);
+            hosts.removeHost(host, callback);
         }
     },
 
@@ -184,7 +184,7 @@ module.exports = {
         }
 
         function proceed () {
-            hosts.updateDev(oldAddress);
+            hosts.updateDev(oldAddress, callback);
         }
     }
 };

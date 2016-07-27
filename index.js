@@ -26,7 +26,13 @@ if (args[0] === 'add') {
     }
 
     // Add.
-    hosts.addHost(args[1]);
+    hosts.addHost(args[1], function (err) {
+
+        // Get an error?
+        if (err) {
+            handleError(err);
+        }
+    });
 }
 
 // Process for 'remove' command.
@@ -45,35 +51,50 @@ if (args[0] === 'remove') {
         process.exit();
     }
 
-    // Add.
-    hosts.removeHost(args[1]);
+    // Remove.
+    hosts.removeHost(args[1], function (err) {
+
+        // Get an error?
+        if (err) {
+            handleError(err);
+        }
+    });
 }
 
-// Process for 'dev' command.
-if (args[0] === 'dev') {
+// Process for 'setdev' command.
+if (args[0] === 'setdev') {
 
     // Is there a second argument?
     if (typeof args[1] === 'undefined') {
-        help('dev');
+        help('setdev');
         process.exit();
     }
 
     // Asking for help?
     if (args[1] === '--help') {
-        console.log('hostman dev <address>');
+        console.log('hostman setdev <address>');
         console.log('Changes the development machine IP and updates related hosts file entries.');
         process.exit();
     }
 
-    // Add.
-    hosts.updateDev(args[1]);
+    // Update.
+    hosts.updateDev(args[1], function (err) {
+
+        // Get an error?
+        if (err) {
+            handleError(err);
+        }
+    });
 }
 
 // Provide help.
 if (args[0] === '--help') {
     console.log('usage: hostman <command> [<args>]');
     console.log();
-    console.log('commands:\t add <domain>');
+    console.log('commands:');
+    console.log('\tadd <domain>');
+    console.log('\tremove <domain>');
+    console.log('\tsetdev <address>');
     process.exit();
 }
 
@@ -86,4 +107,13 @@ function usage () {
 // Print help for passed command.
 function help (command) {
     console.log('"hostman ' + command + ' --help" for help');
+}
+
+// Handle errors.
+function handleError (err) {
+
+    // Permissions?
+    if (err.code === 'EACCES') {
+        console.log('Unable to write to ' + err.path + '. Do you need to use sudo?');
+    }
 }
