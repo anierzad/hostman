@@ -5,7 +5,7 @@ var fs = require('fs');
 
 var config = require('../config');
 
-var managedTag = '// hostsman managed';
+var managedTag = '## hostsman managed';
 
 module.exports = {
 
