@@ -126,7 +126,7 @@ module.exports = {
 
                             // Yes, get host.
                             var host = line.split('\t');
-                            host = host[1].split(' //');
+                            host = host[1].split(' ##');
                             host = host[0];
 
                             // Create new override.
